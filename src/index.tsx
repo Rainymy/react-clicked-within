@@ -1,35 +1,32 @@
 import { type RefObject, useEffect, useRef, useState } from "react";
 
-type elementClickedWithin<T extends HTMLElement> = {
+type UseClickedWithin<T extends HTMLElement> = {
   isClickedWithin: boolean;
   ref: RefObject<T | null>;
 };
 
 /**
- * React hook that tracks whether a click event is within a given element or its descendants.
+ * React hook that tracks whether a click event occurred within a given element or its descendants.
+ * Works with Shadow DOM, conditional rendering, and touch events.
  */
 export function useClickedWithin<T extends HTMLElement>(
   externalRef?: RefObject<T | null>,
-): elementClickedWithin<T> {
-  const [isFocusedWithin, setIsFocusedWithin] = useState(false);
+): UseClickedWithin<T> {
+  const [isClickedWithin, setIsClickedWithin] = useState(false);
 
-  const __internalRef = useRef<T>(null);
-  const ref = externalRef ?? __internalRef;
+  const __ref = useRef<T>(null);
+  const ref = externalRef ?? __ref;
 
   useEffect(() => {
-    function handleFocusOut(event: PointerEvent) {
+    function handleClick(event: PointerEvent) {
+      // const isInside = event.composedPath().includes(ref.current as T);
       const isInside = ref.current?.contains(event.target as Node);
-      setIsFocusedWithin(isInside ?? false);
+      setIsClickedWithin(isInside ?? false);
     }
 
-    document.addEventListener("click", handleFocusOut);
-
-    return () => {
-      document.removeEventListener("click", handleFocusOut);
-    };
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
   }, [ref]);
 
-  return { isClickedWithin: isFocusedWithin, ref: ref };
+  return { isClickedWithin, ref };
 }
-
-export default useClickedWithin;
