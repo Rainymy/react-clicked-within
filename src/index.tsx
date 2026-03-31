@@ -19,9 +19,9 @@ export function useClickedWithin<T extends HTMLElement>(
 
   useEffect(() => {
     function handleClick(event: PointerEvent) {
-      // const isInside = event.composedPath().includes(ref.current as T);
-      const isInside = ref.current?.contains(event.target as Node);
-      setIsClickedWithin(isInside ?? false);
+      const isInside = event.composedPath().includes(ref.current as T);
+      // const isInside = ref.current?.contains(event.target as Node) ?? false;
+      setIsClickedWithin(isInside);
     }
 
     document.addEventListener("click", handleClick);
