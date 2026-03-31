@@ -18,4 +18,5 @@
       "strict": true,
    },
    "include": ["src"],
+   "exclude": ["test"],
 }

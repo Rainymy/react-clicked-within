@@ -21,6 +21,7 @@
   "scripts": {
     "//================= build ==================//": "",
     "build": "tsdown",
+    "test": "jest",
     "//================== npm ===================//": "",
     "package:test": "npm pack --dry-run",
     "package": "npm pack",
@@ -46,7 +47,11 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.10",
+    "@testing-library/react": "^16.3.2",
+    "@types/jest": "^30.0.0",
     "@types/react": "^19.2.14",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
     "publint": "^0.3.18",
     "react": "^19.2.4",
     "tsdown": "^0.21.7",
