@@ -1,7 +1,7 @@
 {
   "name": "react-clicked-within",
   "version": "1.0.0",
-  "description": "",
+  "description": "A React hook that tracks whether a click event occurred within a given element or its descendants.",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
