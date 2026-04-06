@@ -7,7 +7,7 @@ A React hook that tracks whether a click event occurred within a given element o
 ### Basic usage
 
 ```tsx
-import { useClickedWithin } from "useClickedWithin";
+import { useClickedWithin } from "react-clicked-within";
 
 function Component() {
   const { ref, isClickedWithin } = useClickedWithin<HTMLDivElement>();
@@ -30,7 +30,7 @@ function Component() {
 
 ```tsx
 import { useRef } from "react";
-import { useClickedWithin } from "useClickedWithin";
+import { useClickedWithin } from "react-clicked-within";
 
 function Component() {
   const ref = useRef<HTMLDivElement>(null);
